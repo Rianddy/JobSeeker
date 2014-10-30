@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd"
+	default-autowire="byName" default-lazy-init="true">
+	<bean id="userService" class="com.JobSeeker.service.UserServiceImpl" >
+	    <constructor-arg>
+			<ref bean="userDAO" />
+		</constructor-arg>
+	</bean>
+	<bean id="jobService" class="com.JobSeeker.service.JobServiceImpl" >
+	    <constructor-arg>
+			<ref bean="jobDAO" />
+		</constructor-arg>
+	</bean>
+	<bean id="usersAndJobsService" class="com.JobSeeker.service.UsersAndJobsServiceImpl" >
+	    <constructor-arg>
+			<ref bean="usersAndJobsDAO" />
+		</constructor-arg>
+	</bean>
+	<bean id="feedService" class="com.JobSeeker.service.FeedServiceImpl" >
+	    <constructor-arg>
+			<ref bean="feedDAO" />
+		</constructor-arg>
+	</bean>
+	<bean id="serviceManager" class="com.JobSeeker.service.ServiceManager">
+		<property name="userService">
+			<ref bean="userService" />
+		</property>
+		<property name="jobService">
+			<ref bean="jobService" />
+		</property>
+		<property name="usersAndJobsService">
+			<ref bean="usersAndJobsService" />
+		</property>
+		<property name="feedService">
+			<ref bean="feedService" />
+		</property>
+	</bean>
+</beans>

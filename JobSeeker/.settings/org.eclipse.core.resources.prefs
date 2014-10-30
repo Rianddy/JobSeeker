@@ -1,0 +1,10 @@
+eclipse.preferences.version=1
+encoding//WebRoot/WEB-INF/jsp/cart.jsp=UTF-8
+encoding//WebRoot/WEB-INF/jsp/job.jsp=UTF-8
+encoding//WebRoot/css/main.css=UTF-8
+encoding//WebRoot/javascript/common.js=UTF-8
+encoding//src/com/JobSeeker/interceptor/AuthorizationInterceptor.java=UTF-8
+encoding//src/com/JobSeeker/struts2/action/LoginAction.java=UTF-8
+encoding//src/com/JobSeeker/struts2/action/RegisterAction.java=UTF-8
+encoding//src/com/JobSeeker/struts2/action/ValidateCodeAction.java=UTF-8
+encoding//src/common/Constants.java=UTF-8

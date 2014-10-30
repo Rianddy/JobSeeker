@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC "-//OpenSymphony Group//XWork Validator 1.0.2//EN"
+"http://www.opensymphony.com/xwork/xwork-validator-1.0.2.dtd">
+<validators>
+	<validator type="requiredstring" >
+		<param name="fieldName">username</param>
+		<message>Username mustn't be empty!</message>
+	</validator>
+	<validator type="requiredstring">
+		<param name="fieldName">passwordMD5</param>
+		<message>Password mustn't be empty!</message>
+	</validator>
+	<validator type="requiredstring">
+		<param name="fieldName">validationCode</param>
+		<message>Validation code mustn't be empty!</message>
+	</validator>
+	<validator type="expression">
+		<param name="expression">repassword == passwordMD5</param>
+		<message>The passwords you entered are not the same!</message>
+	</validator>   
+ 
+	<validator type="stringlength" >
+		<param name="fieldName">username</param>
+		<param name="minLength">4</param>
+		<param name="maxLength">20</param>
+		<param name="trim">true</param>
+		<message>Username's length must be 4-20!</message>
+	</validator>
+	<validator type="stringlength">
+		<param name="fieldName">passwordMD5</param>
+		<param name="minLength">8</param>
+		<param name="maxLength">30</param>
+		<param name="trim">true</param>
+		<message>Password's length must be 8-30!</message>
+	</validator>
+
+	<validator type="regex">
+		<param name="fieldName">username</param>
+		<param name="expression"><![CDATA[(^\w*$)]]></param>
+		<param name="trim">true</param>
+		<message>Username must be constructed of numbers and letters!</message>
+	</validator>
+    <validator type="email">
+        <param name="fieldName">email</param>
+        <message>Email address must be legal!</message>
+    </validator>
+
+</validators>

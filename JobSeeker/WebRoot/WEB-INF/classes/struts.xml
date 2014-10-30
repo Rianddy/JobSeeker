@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<constant name="struts.custom.i18n.resources"
+		value="i18n/MessageResources" />
+	<package name="JobSeeker"  namespace="/"  extends="json-default">	
+		<interceptors>
+			<interceptor name="authorization"
+				class="com.JobSeeker.interceptor.AuthorizationInterceptor" />
+			<interceptor-stack name="myStack">
+				<interceptor-ref name="authorization">
+					<param name="ignoreActions">
+						applyalljobsincart,createfeed,getfeeds,deletefeed
+					</param> 
+				</interceptor-ref>
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="myStack" />	
+		<global-results>
+			<result name="success">/WEB-INF/jsp/result_json.jsp</result>
+			<result name="error">/WEB-INF/jsp/result_json.jsp</result>
+			<result name="login" type="redirectAction">login_page</result>
+			<result name="cookie" type="redirect">addcookie.action</result>
+		</global-results>
+		<action name="register" class="com.JobSeeker.struts2.action.RegisterAction" method="execute">
+			<result name="success" type="redirectAction">${prePage}</result>
+			<result name="input" >/WEB-INF/jsp/register.jsp</result>
+		</action>
+		<action name="login" class="com.JobSeeker.struts2.action.LoginAction" method="execute">
+			<result name="success" type="redirectAction">${prePage}</result>
+			<result name="input">/WEB-INF/jsp/login.jsp</result>
+		</action>		
+		<action name="relogin" class="com.JobSeeker.struts2.action.ReloginAction" method="execute">
+			<result name="success" type="redirectAction">main_page</result>
+		</action>		
+		<action name="addcookie" class="com.JobSeeker.struts2.action.AddCookieUserAction" method="execute">
+		    <result name="prepage" type="redirectAction">${prePage}</result>
+			<result name="success" type="redirect">main_page.action</result>
+		</action>	
+		<action name="savejobtocart" class="com.JobSeeker.struts2.action.SaveJobToCartAction" method="execute">
+			<result name="success">/WEB-INF/jsp/savejob_result.jsp</result>
+		</action>
+		<action name="getcartjobs" class="com.JobSeeker.struts2.action.GetCartJobsAction" method="execute">
+			<result name="success" >/WEB-INF/jsp/cart.jsp</result>
+		</action>
+		<action name="getalljobsbydate" class="com.JobSeeker.struts2.action.GetAllJobsByDateAction" method="execute">
+			<result name="success">/WEB-INF/jsp/job.jsp</result>
+		</action>
+		<action name="getfeeds" class="com.JobSeeker.struts2.action.GetFeedsAction" method="execute">
+			<result name="success">/WEB-INF/jsp/feed.jsp</result>
+		</action>
+		<action name="deletefeed" class="com.JobSeeker.struts2.action.DeleteFeedAction" method="execute">
+			<result name="success">/WEB-INF/jsp/feed.jsp</result>
+		</action>
+		<action name="createfeed" class="com.JobSeeker.struts2.action.CreateFeedAction" method="execute">
+			<result name="success">/WEB-INF/jsp/feed.jsp</result>
+		</action>
+		<action name="deletejobincart" class="com.JobSeeker.struts2.action.DeleteJobInCartAction" method="execute">
+			<result name="success">/WEB-INF/jsp/feed.jsp</result>
+		</action>
+		<action name="applyalljobsincart" class="com.JobSeeker.struts2.action.ApplyAllJobsInCartAction" method="execute">
+			<result name="success">/WEB-INF/jsp/cart.jsp</result>
+		</action>
+		<action name="searchjobs" class="com.JobSeeker.struts2.action.SearchJobsAction" method="execute">
+			<result name="success">/WEB-INF/jsp/job.jsp</result>
+		</action>
+		<action name="validate_code" class="com.JobSeeker.struts2.action.ValidateCodeAction" />
+		<action name="*_page">
+			<result>/WEB-INF/jsp/{1}.jsp</result>
+		</action>
+	</package>
+</struts>
